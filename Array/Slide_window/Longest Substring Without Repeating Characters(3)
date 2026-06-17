@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int first = 0;
+        int second = 0;
+        int len = 0;
+        vector<bool>count(256,0);
+
+            while(second<s.size()){
+                //element checking is repeating or not
+                while(count[s[second]]){
+                    count[s[first]]=0;
+                    first++;
+                }
+
+                //after checking that element is not repeating 
+                //updated the len and added the element for counting
+                count[s[second]] = 1;
+                second++;
+                len = max(len,second-first);
+
+            }
+       return len; 
+    }
+};
